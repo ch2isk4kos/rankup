@@ -1,5 +1,4 @@
-# Association Model
-
+# Association Model:
                          @user      
                            |           
                            ^           
@@ -25,7 +24,7 @@ player belongs_to :team
 team has_many :players
 team has_many :rankings, through: :players
 
-# Attributes
+# Attributes:
 
 *User*
 * username
@@ -73,23 +72,29 @@ $ rails g resource Player first_name:string last_name:string position:string num
 
 $ rails g resource Team city:string name:string year:integer
 
+
 ###########################**********************#############################
+
+#                               Scalability
+
 ###########################**********************#############################
-###########################**********************#############################
 
-# Scalability: NEEDS EDITING
+                        @user
+                          |
+                          ^
+@sport -< @category -< @ranking -< @player >- @team -< @coach -< @staff
+   |                      v           |
+   ^                      |           ^
+@league                @comment   @sneaker -< @color_way
+                                      v
+                                      |
+                                   @brand
 
+# Added Associations:
+sport has_many :leagues
 
-              @user      @sneaker   
-                |           V         
-                ^           |         
-@category -< @ranking -< @player >- @sport
-                V           |          |
-                |           ^          ^
-            @comment      @team     @league
+league belongs_to :sport
 
-
-# Added Associations
 user has_many :comments, through: :rankings
 
 ranking belongs_to :comment
@@ -98,21 +103,34 @@ comment has_many :rankings
 comment has_many :users, through: :rankings
 
 player has_many :sneakers
+player has_many :brands, through: :sneakers
 
 sneaker belongs_to :player
+sneaker belongs_to :brand
+sneaker has_many :color_ways
 
-sport has_many :leagues
+color_way belongs_to :sneaker
 
-league belongs_to :sport
+brand has_many :sneakers
+brand has_many :players, through: :sneakers
 
+team has_many :coaches
 
-# Added Attributes
+coach belongs_to :team
+coach has_many :staff_members
+
+staff_members belongs_to :coach
+
+# Added Attributes:
 *Ranking*
 * comment_id
 
 $ rails g migration addCommentIdToRankingsTable comment_id:integer comment:belongs_to
 
-$ rails g resource Player first_name:string last_name:string position:string number:integer ranking:belongs_to team:belongs_to belongs_to:sport
+*Sport*
+* gender
+
+$ rails g migration addGenderToSportsTable gender:string
 
 *League*
 * name
@@ -120,9 +138,35 @@ $ rails g resource Player first_name:string last_name:string position:string num
 
 $ rails g resource League name:string sport_id:integer
 
-*Team*
-* city
+*Sneaker*
 * name
-* year
+* release_date
+* player_id
+* brand_id
 
-$ rails g resource Team city:string name:string year:integer
+$ rails g resource Sneaker name:string release_date:integer player_id:integer player:belongs_to
+
+*Brand*
+* name
+
+$ rails g resource Brand name:string release_date:integer player_id:integer player:belongs_to
+
+*ColorWay*
+* base
+* secondary
+* tertiary
+
+*Coach*
+* first_name
+* last_name
+* team_id
+
+$ rails g resource Coach first_name:string last_name:string team_id:integer team:belongs_to
+
+*Staff*
+* first_name
+* last_name
+* job_title
+* coach_id
+
+$ rails g resource Staff first_name:string last_name:string job_title:string coach_id:integer coach:belongs_to
