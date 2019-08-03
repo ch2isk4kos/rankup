@@ -10,6 +10,20 @@
   </head>
 
   <body>
-    <%= yield %>
+
+      <% if logged_in? %>
+          <nav class='navbar'>
+              logged in: <%= link_to @current_user.username %>
+              <%= link_to 'logout', '/logout', method: :delete %>
+       <% else %>
+              <%= link_to 'login', login_path %>
+              <%= link_to 'signup', signup_path %>
+          </nav>
+       <% end %>
+
+       <div class='container'>
+          <%= yield %>
+       </div>
+       
   </body>
 </html>
