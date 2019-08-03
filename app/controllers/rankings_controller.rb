@@ -2,6 +2,10 @@ class RankingsController < ApplicationController
 
     before_action :find_ranking, only: [:show]
 
+    def index
+        @rankings = Ranking.all
+    end
+
     def new
         @ranking = Ranking.new
     end
