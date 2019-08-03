@@ -1,8 +1,7 @@
-<h1><%= @category.title %> </h1>
+<h1><%= @category.title %> Rankings</h1>
 <hr>
-<h2>Rankings</h2>
 <% @category.rankings.each do |ranking| %>
-    <%= ranking %>
+    <%= ranking.description %>
 <% end %>
 <br>
-<%= link_to 'New Ranking', new_ranking_path %>
+<%= link_to "Rank Your #{@category.title}", new_ranking_path %>
