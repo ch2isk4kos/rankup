@@ -6,11 +6,10 @@ class SessionsController < ApplicationController
     # login
     def create
         user = User.find_by(email: params[:user][:email])
+        # byebug
         if user && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
-            flash[:success] = "You have successfully logged in"
             redirect_to user
-            # byebug
         else
             render :new
         end

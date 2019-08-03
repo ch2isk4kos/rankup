@@ -11,7 +11,7 @@
 
   <body>
 
-      <% if logged_in? %>
+       <% if logged_in? %>
           <nav class='navbar'>
               logged in: <%= link_to @current_user.username %>
               <%= link_to 'logout', '/logout', method: :delete %>
@@ -24,6 +24,6 @@
        <div class='container'>
           <%= yield %>
        </div>
-       
+
   </body>
 </html>
