@@ -14,15 +14,15 @@ Rails.application.routes.draw do
 
     resources :sports, except: [:edit, :update, :destroy]
 
-    resources :categories, except: [:index] do
-        resources :rankings
+    resources :categories, except: [:index]
+
+    resources :rankings, except: [:edit, :update, :destroy]
+
+    # resources :players, except: [:edit, :update, :destroy]
+
+    resources :teams, except: [:edit, :update, :destroy] do
+        resources :players, except: [:edit, :update, :destroy]
     end
-
-    # resources :rankings
-
-    resources :players, except: [:edit, :update, :destroy]
-
-    resources :teams, except: [:edit, :update, :destroy]
 
 
 
