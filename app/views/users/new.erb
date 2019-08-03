@@ -1,0 +1,25 @@
+<h1>Sign Up</h1>
+<hr>
+<%= form_for :user do |f| %>
+
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <br>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <br>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br>
+    <%= f.label :fav_sport, 'Favorite Sport' %>
+    <%= f.text_field :fav_sport %>
+    <br>
+    <%= f.label :fav_team, 'Favorite Team'  %>
+    <%= f.text_field :fav_team %>
+    <br>
+    <%= f.label :fav_player, 'Favorite Player' %>
+    <%= f.text_field :fav_player %>
+    <br>
+    <%= f.submit "Sign Up" %>
+
+<% end %>
