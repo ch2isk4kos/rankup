@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-    root 'welcome#home' # get '/', to: 'welcome#home'
+    root 'welcomes#home' # get '/', to: 'welcomes#home'
 
     resources :teams
     resources :players
