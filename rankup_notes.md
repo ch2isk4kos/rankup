@@ -7,7 +7,7 @@
 user has_many :rankings
 user has_many :categories, through: :rankings
 
-sport has_many :categories           
+sport has_many :categories
 
 category belongs_to :sport
 category has_many :rankings
