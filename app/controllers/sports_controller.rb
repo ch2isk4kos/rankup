@@ -25,7 +25,7 @@ class SportsController < ApplicationController
     private
 
     def sport_params
-        params.require(:sport).permit(:name)
+        params.require(:sport).permit(:name, :gender)
     end
 
     def find_sport
