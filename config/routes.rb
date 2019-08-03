@@ -11,10 +11,17 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy'
 
     resources :users, except: [:index]
+
     resources :sports, except: [:edit, :update, :destroy]
-    resources :categories, except: [:index]
-    resources :rankings
+
+    resources :categories, except: [:index] do
+        resources :rankings
+    end
+
+    # resources :rankings
+
     resources :players, except: [:edit, :update, :destroy]
+
     resources :teams, except: [:edit, :update, :destroy]
 
 
