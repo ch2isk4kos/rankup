@@ -1,0 +1,6 @@
+<h1><%= @sport.name %> Categories</h1>
+<hr>
+<br>
+<% @sport.categories.each do |cat| %>
+    <%= link_to cat.title %>
+<% end %>
