@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  email: MyString
+  password_digest: MyString
+  fav_sport: MyString
+  fav_team: MyString
+  fav_player: MyString
+
+two:
+  username: MyString
+  email: MyString
+  password_digest: MyString
+  fav_sport: MyString
+  fav_team: MyString
+  fav_player: MyString
