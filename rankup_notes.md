@@ -38,8 +38,9 @@ $ rails g resource User username:string email:string password_digest:string fav_
 
 *Sport*
 * name
+* gender
 
-$ rails g resource Sport name:string
+$ rails g resource Sport name:string gender:string
 
 *Category*
 * title
@@ -63,7 +64,7 @@ $ rails g resource Ranking description:text user_id:integer category_id:integer 
 * ranking_id
 * team_id
 
-$ rails g resource Player first_name:string last_name:string position:string number:integer ranking_id:integer team_id:integer ranking:belongs_to team:belongs_to
+$ rails g resource Player first_name:string last_name:string position:string number:integer year:integer ranking_id:integer team_id:integer ranking:belongs_to team:belongs_to
 
 *Team*
 * city
