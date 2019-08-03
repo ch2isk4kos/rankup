@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     resources :users, except: [:index]
     resources :sports, except: [:edit, :update, :destroy]
-    resources :categories
+    resources :categories, except: [:index]
     resources :rankings
     resources :players, except: [:edit, :update, :destroy]
     resources :teams, except: [:edit, :update, :destroy]
