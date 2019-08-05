@@ -12,18 +12,16 @@ Rails.application.routes.draw do
 
     resources :users, except: [:index]
 
-    resources :sports, except: [:edit, :update, :destroy]
-
-    resources :categories, except: [:index] do
-        resources :rankings, except: [:edit, :update, :destroy]
+    resources :sports, except: [:edit, :update, :destroy] do
+        resources :categories, except: [:index]
     end
 
-    resources :rankings, except: [:edit, :update, :destroy]
-
-    # resources :players, except: [:edit, :update, :destroy]
+    resources :rankings
 
     resources :teams, except: [:edit, :update, :destroy] do
         resources :players, except: [:edit, :update, :destroy]
     end
+
+    resources :players, except: [:edit, :update, :destroy]
 
 end
