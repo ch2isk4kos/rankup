@@ -1,8 +1,8 @@
 # Association Model:
-                         @user      
+                         @user   
                            |           
                            ^           
-@sport -< @category -< @ranking -< @player >- @team
+@sport -< @category -< @ranking -< @player_ranking >- @player >- @team
 
 user has_many :rankings
 user has_many :categories, through: :rankings
@@ -15,8 +15,11 @@ category has_many :users, :rankings
 
 ranking belongs_to :user
 ranking belongs_to :category
-ranking has_many :players
-ranking has_many :teams, through: :players
+ranking has_many :player_rankings
+ranking has_many :players, through: :player_rankings
+
+player_ranking belongs_to :ranking
+player_ranking belongs_to :player
 
 player belongs_to :ranking
 player belongs_to :team
@@ -55,16 +58,19 @@ $ rails g resource Category title:string sport_id:integer sport:belongs_to
 
 $ rails g resource Ranking description:text user_id:integer category_id:integer user:belongs_to category:belongs_to
 
+*PlayerRanking*
+* ranking_id
+* player_id
+
 *Player*
 * first_name
 * last_name
 * position
 * number
 * year
-* ranking_id
 * team_id
 
-$ rails g resource Player first_name:string last_name:string position:string number:integer year:integer ranking_id:integer team_id:integer ranking:belongs_to team:belongs_to
+$ rails g resource Player first_name:string last_name:string position:string number:integer year:integer team_id:integer team:belongs_to
 
 *Team*
 * city
@@ -171,3 +177,8 @@ $ rails g resource Coach first_name:string last_name:string team_id:integer team
 * coach_id
 
 $ rails g resource Staff first_name:string last_name:string job_title:string coach_id:integer coach:belongs_to
+
+@user      
+  |           
+  ^           
+@sport -< @category -< @ranking -< @player >- @team
