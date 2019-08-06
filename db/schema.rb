@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_003912) do
+ActiveRecord::Schema.define(version: 2019_08_06_002107) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -26,11 +26,9 @@ ActiveRecord::Schema.define(version: 2019_08_03_003912) do
     t.string "position"
     t.integer "number"
     t.integer "year"
-    t.integer "ranking_id"
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ranking_id"], name: "index_players_on_ranking_id"
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 
