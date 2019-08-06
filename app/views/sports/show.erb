@@ -2,5 +2,5 @@
 <hr>
 <br>
 <% @sport.categories.each do |cat| %>
-    <%= link_to cat.title, cat %>
+    <%= link_to cat.title, sport_category_path(cat) %>
 <% end %>

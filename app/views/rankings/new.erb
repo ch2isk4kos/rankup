@@ -1,2 +1,52 @@
-<h1> New Ranking</h1>
+<h1>New <%= @ranking.category.sport.name %> Ranking</h1>
 <hr>
+<!-- a form for the ranking -->
+<%= form_for @ranking do |f|%>
+
+    <h2>✩ <%= current_user.username %>'s <%= @ranking.category.title %> ✩</h2>
+    <%= f.label :category_id, "Category"%>
+    <%= f.collection_select :category_id, Category.all, :id, :title, prompt: true%>
+    <br>
+
+    <!-- DOUBLE NESTED FORM  -->
+
+    <!-- plural b/c :ranking has_many :player_rankings -->
+    <%= f.fields_for :player_rankings do |player_ranking|%>
+
+       <!-- singular b/c :player_ranking belongs_to :player -->
+       <%= player_ranking.fields_for :player do |p|%>
+            <ol>
+                <h4>Select or Create Players: </h4>
+                <li>
+                    <hr>
+                    <%= p.collection_select(:player_id, Player.all, :id, :last_name, include_blank: true)%>
+                    <%= p.label :first_name, "First:"%>
+                    <%= p.text_field :first_name %>
+                    <%= p.label :last_name, "Last:"%>
+                    <%= p.text_field :last_name %>
+                    <%= p.label :position, "Position:" %>
+                    <%= p.text_field :position %>
+                    <%= p.label :number, "Number:"%>
+                    <%= p.number_field :number %>
+
+                    <!-- singular b/c :player belongs_to :team -->
+                    <%= p.fields_for :team do |player_team| %>
+                        <%= player_team.label :team %>
+                        <%= player_team.collection_select(:team_id, Team.all, :id, :name, include_blank: true)%></h4>
+                    <% end %>
+                    <hr>
+                </li>
+            </ol>
+       <% end %>
+
+    <% end %>
+
+    <!-- text area for a description -->
+    <%= f.label :description, "Honorable Mentions" %><br>
+    <%= f.text_area :description %>
+    <br>
+
+    <!-- a submit button -->
+    <%= f.submit %>
+
+<% end %>
